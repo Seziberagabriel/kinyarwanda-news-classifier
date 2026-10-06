@@ -5,7 +5,7 @@ Capstone project comparing classical baselines, a BiLSTM, and a fine-tuned AfriB
 
 ## Project links
 - GitHub repository: https://github.com/Seziberagabriel/kinyarwanda-news-classifier
-- Live system (Streamlit): <ADD STREAMLIT LINK>
+- Live system (Streamlit): <https://kinyarwanda-news-classifier-ahlswgkxat7pdhwdduckxw.streamlit.app/>
 - Demo video: <ADD VIDEO LINK>
 - Trained model (Hugging Face Hub): https://huggingface.co/Seziberagabriel/kinyarwanda-news-classifier
 - Run everything on Colab: `notebooks/run_on_colab.ipynb`
