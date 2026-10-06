@@ -4,7 +4,7 @@ Text classification for Kinyarwanda: news articles are assigned to one of 14 top
 Capstone project comparing classical baselines, a BiLSTM, and a fine-tuned AfriBERTa transformer, with error analysis and a web app.
 
 ## Project links
-- GitHub repository: https://github.com/YOUR_GITHUB_USERNAME/kinyarwanda-news-classifier
+- GitHub repository: https://github.com/Seziberagabriel/kinyarwanda-news-classifier
 - Live system (Streamlit): <ADD STREAMLIT LINK>
 - Demo video: <ADD VIDEO LINK>
 - Trained model (Hugging Face Hub): https://huggingface.co/Seziberagabriel/kinyarwanda-news-classifier
