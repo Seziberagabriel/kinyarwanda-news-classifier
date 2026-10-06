@@ -1,0 +1,20 @@
+               precision    recall  f1-score   support
+
+      culture       0.66      0.55      0.60        42
+      economy       0.70      0.70      0.70       228
+    education       0.57      0.62      0.59        34
+entertainment       0.88      0.87      0.87       355
+  environment       0.38      0.38      0.38        16
+      fashion       0.72      0.65      0.68        20
+       health       0.68      0.68      0.68       256
+      history       0.62      0.24      0.35        54
+     politics       0.74      0.73      0.74       388
+ relationship       0.81      0.90      0.86       122
+     religion       0.78      0.86      0.82       131
+        sport       0.93      0.97      0.95       313
+   technology       0.68      0.61      0.64        41
+      tourism       0.44      1.00      0.62         8
+
+     accuracy                           0.78      2008
+    macro avg       0.68      0.70      0.68      2008
+ weighted avg       0.78      0.78      0.77      2008

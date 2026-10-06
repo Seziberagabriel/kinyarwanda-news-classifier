@@ -1,0 +1,15 @@
+label_name,train,val,test
+culture,156,17,42
+economy,954,106,228
+education,137,15,34
+entertainment,1321,147,355
+environment,110,12,16
+fashion,98,11,20
+health,993,111,256
+history,157,18,54
+politics,1557,173,388
+relationship,576,64,122
+religion,513,57,131
+sport,1312,146,313
+technology,191,21,41
+tourism,92,10,8

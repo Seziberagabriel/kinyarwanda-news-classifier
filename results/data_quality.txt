@@ -1,0 +1,19 @@
+=== train: 17014 rows ===
+empty title:   0
+empty content: 0
+text shorter than 20 chars: 0
+duplicate full texts (extra copies): 7939
+duplicate titles (extra copies):     8017
+duplicate contents (extra copies):   7956
+texts that appear with CONFLICTING labels: 109
+
+=== test: 4254 rows ===
+empty title:   0
+empty content: 0
+text shorter than 20 chars: 0
+duplicate full texts (extra copies): 1568
+duplicate titles (extra copies):     1575
+duplicate contents (extra copies):   1568
+texts that appear with CONFLICTING labels: 13
+
+test rows whose exact text also appears in train: 2226

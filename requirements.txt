@@ -1,0 +1,10 @@
+datasets<4.0
+transformers>=4.41
+accelerate
+torch
+scikit-learn
+pandas
+matplotlib
+huggingface_hub
+sentencepiece
+# Optional (only for the Word2Vec experiment): gensim

@@ -1,0 +1,7 @@
+model,config,accuracy,precision_macro,recall_macro,f1_macro,f1_weighted
+tfidf_logreg,"TF-IDF 1-2gram 50k, LogReg C=10",0.8023,0.8045,0.6832,0.7215,0.7962
+tfidf_nb,"TF-IDF 1-2gram 50k, MultinomialNB alpha=0.1",0.7585,0.8317,0.5293,0.5787,0.7416
+bilstm,"emb=200, hid=128, maxlen=256, epochs=8, lr=0.001, w2v=False",0.7082,0.7048,0.5225,0.5239,0.6916
+afriberta_base,"castorini/afriberta_base, lr=3e-05, epochs=3, max_len=256, batch=16, n_train=8167, class_weights=False",0.7779,0.6845,0.6969,0.6761,0.7736
+afriberta_base_len128,"castorini/afriberta_base, lr=3e-05, epochs=3, max_len=128, batch=16, n_train=8167, class_weights=False",0.7585,0.6541,0.6541,0.6407,0.7536
+afriberta_base_lr2e5,"castorini/afriberta_base, lr=2e-05, epochs=4, max_len=256, batch=16, n_train=8167, class_weights=False",0.7784,0.6867,0.7043,0.6811,0.7733
