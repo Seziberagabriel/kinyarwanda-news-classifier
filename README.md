@@ -1,7 +1,7 @@
 # Kinyarwanda News Topic Classification
 
 Text classification for Kinyarwanda: news articles are assigned to one of 14 topics.
-Capstone project comparing classical baselines, a BiLSTM, and a fine-tuned AfriBERTa transformer, with error analysis and a web app.
+Summative project comparing classical baselines, a BiLSTM, and a fine-tuned AfriBERTa transformer, with error analysis and a web app.
 
 ## Project links
 - GitHub repository: https://github.com/Seziberagabriel/kinyarwanda-news-classifier
@@ -15,9 +15,11 @@ Given a Kinyarwanda news article (title + content), predict its topic.
 
 ## Dataset
 KINNEWS (Niyongabo et al., 2020), Hugging Face `andreniyongabo/kinnews_kirnews`, config `kinnews_cleaned`, MIT license.
-14 classes: politics, sport, economy, health, entertainment, history, technology, tourism, culture, fashion, religion, environment, education, relationship.
+- **Collection:** 21,268 Kinyarwanda news articles collected from fifteen news websites and five newspapers from Rwanda that publish in Kinyarwanda (sources found from two newspaper directories, then expanded with Google searches on Kinyarwanda key phrases).
+- **Categories:** publishers' own categories (48 in total) were grouped by the authors into 14 topics: politics, sport, economy, health, entertainment, history, technology, tourism, culture, fashion, religion, environment, education, relationship. Two native-speaker annotators (linguistics graduates) labelled each article from its title and content; articles they hesitated on were marked neutral and removed.
+- **Cleaning in the `cleaned` version (done by the dataset authors):** special characters and URLs removed, plus 80 Kinyarwanda stopwords. This is why the text has no punctuation and lacks many common words. The web apps therefore clean user input the same way (approximately).
 
-**Data quality findings** (`src/data_quality.py`, `results/data_quality.txt`): the raw training set (17,014 rows) contains 7,939 extra copies of duplicate articles, 109 texts with conflicting labels, and 2,226 of the 4,254 test rows have exact copies in the training set. I therefore removed duplicates and test/train overlaps (`src/prepare_data.py`).
+**My additional data-quality audit** (`src/data_quality.py`, `results/data_quality.txt`): the raw training set (17,014 rows) contains 7,939 extra copies of duplicate articles and 109 texts with conflicting labels, and 2,226 of the 4,254 test rows have exact copies in the training set. I removed duplicates and test/train overlaps (`src/prepare_data.py`).
 Final splits: **train 8,167 / validation 908 / test 2,008**. Classes are imbalanced (e.g. tourism has only 8 test articles), so macro-F1 is reported alongside accuracy.
 
 ## Methods
@@ -42,6 +44,7 @@ Final splits: **train 8,167 / validation 908 / test 2,008**. Classes are imbalan
 | afriberta_base_lr2e5 | castorini/afriberta_base, lr=2e-05, epochs=4, max_len=256, batch=16, n_train=8167, class_weights=False | 0.778 | 0.687 | 0.704 | 0.681 |
 
 The TF-IDF + Logistic Regression baseline outperformed the fine-tuned transformer; see the report for analysis.
+For context, Niyongabo et al. (2020) report 87.14% accuracy for TF-IDF + Logistic Regression on the original (not de-duplicated) KINNEWS split; my numbers are on the cleaned split and are not directly comparable.
 Per-class reports: `results/report_afriberta_base.txt`. Confusion matrix: `results/confusion_afriberta_base.png`.
 
 ## How to run

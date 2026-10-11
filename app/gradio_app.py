@@ -1,17 +1,40 @@
 """Gradio app: Kinyarwanda news topic classifier (fine-tuned AfriBERTa on KINNEWS)."""
 import os
+import re
+
 import gradio as gr
 from transformers import pipeline
 
 MODEL_ID = os.environ.get("MODEL_ID", "Seziberagabriel/kinyarwanda-news-classifier")
+
+# The 80 Kinyarwanda stopwords removed by the KINNEWS authors (Niyongabo et al., 2020, Table 2)
+STOPWORDS = set("""aba abo aha aho ari ati aya ayo ba baba babo bari be bo bose bw bwa bwo by bya
+byo cy cya cyo hafi ibi ibyo icyo iki imwe iri iyi iyo izi izo ka ko ku kuri kuva kwa maze mu muri
+na naho nawe ngo ni niba nk nka no nta nuko rero rw rwa rwo ry rya ubu ubwo uko undi uri uwo uyu wa
+wari we wo ya yabo yari ye yo yose za zo""".split())
+
+
+def clean_text(text):
+    """Approximate the cleaning used for the 'kinnews_cleaned' training data: lowercase, remove URLs,
+    digits and punctuation (apostrophes and hyphens kept), and remove the 80 stopwords."""
+    t = text.lower()
+    t = re.sub(r"https?://\S+|www\.\S+", " ", t)
+    t = t.replace("'", "\u2019")
+    t = re.sub(r"[^a-z\u2019\- ]+", " ", t)
+    return " ".join(w for w in t.split() if w.strip("-\u2019") and w not in STOPWORDS)
+
+
 clf = pipeline("text-classification", model=MODEL_ID, top_k=None)
 
 
 def predict(text):
     if not text or not text.strip():
         return {}, "Please enter some Kinyarwanda text."
-    # The training text was lowercased, so we lowercase input to match.
-    res = clf(text.lower(), truncation=True, max_length=256)
+    # The model was trained on KINNEWS 'cleaned' text, so we clean the input in the same way.
+    cleaned = clean_text(text)
+    if not cleaned:
+        return {}, "No usable words left after cleaning. Please enter Kinyarwanda text."
+    res = clf(cleaned, truncation=True, max_length=256)
     if res and isinstance(res[0], list):
         res = res[0]
     scores = {r["label"]: float(r["score"]) for r in res}
